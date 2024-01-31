@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Risk to Reward</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            color: #333;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form id="calculatorForm">
+        <h1>Kalkulator Risk to Reward</h1>
+
+        <label for="price">Obecna cena instrumentu finansowego:</label>
+        <input type="number" id="price" name="price" required>
+
+        <label for="risk">Ile % jesteś w stanie zaryzykować:</label>
+        <input type="number" id="risk" name="risk" required>
+
+        <label for="ratio">Jakie risk to reward ratio chcesz zastosować:</label>
+        <input type="number" id="ratio" name="ratio" required>
+
+        <button type="button" onclick="calculate()">Oblicz</button>
+
+        <div id="result"></div>
+    </form>
+
+    <script>
+        function calculate() {
+            var price = parseFloat(document.getElementById("price").value);
+            var risk = parseFloat(document.getElementById("risk").value);
+            var ratio = parseFloat(document.getElementById("ratio").value);
+
+            var stopLoss = price * (1 - risk / 100);
+            var takeProfit = price * (1 + (risk / 100) * (1 / ratio));
+
+            document.getElementById("result").innerHTML = "Stop loss wynosi: " + stopLoss.toFixed(2) + "<br>Take profit wynosi: " + takeProfit.toFixed(2);
+        }
+    </script>
+</body>
+</html>
